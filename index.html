@@ -108,7 +108,7 @@
   <label>SP:</label>
   <input type="text" id="sp">
 
-  <label>CAUSA RAIZ:</label>
+  <label>CAUSA:</label>
   <select id="codigo1" onchange="atualizaCodigo2()">
     <option value="">-- Selecione --</option>
     <option value="abalroamento">Abalroamento</option>
@@ -123,7 +123,7 @@
     <option value="Obras de Terceiros">Obras de Terceiros</option>
   </select>
 
-  <label>CAUSA SECUNDÁRIA:</label>
+  <label>SUB CAUSA:</label>
   <select id="codigo2">
     <option>-- Selecione Causa Raiz primeiro --</option>
   </select>
@@ -136,6 +136,10 @@
 
   <label>ENDEREÇO:</label>
   <input type="text" id="endereco">
+
+  
+  <label>NÚMERO DA FACHADA:</label>
+  <input type="text" id="NÚMERO DA FACHADA">
 
   <label>BAIRRO:</label>
   <input type="text" id="bairro">
@@ -167,17 +171,17 @@
     codigo2.innerHTML = "";
     let opcoes = [];
     if (codigo1 === "abalroamento") {
-      opcoes = ["", "Veículo colidiu", "Poste derrubado", "Queda de árvore"];
+      opcoes = ["", "Cabo baixo"];
     } else if (codigo1 === "Furto") {
       opcoes = ["", "Cabo", "CEO", "CTO", "Splitter"];
     } else if (codigo1 === "Acidente") {
-      opcoes = ["", "Carga Alta"];
+      opcoes = ["", "Carga Alta"],"Linha de pipa";
     } else if (codigo1 === "Descarga") {
       opcoes = ["", "Atmosférica", "Elétrica"];
     } else if (codigo1 === "Vandalismo") {
-      opcoes = ["", "Vandalismo"];
+      opcoes = ["", "Tentativa de furto","Depredado"];
     } else if (codigo1 === "Troca de poste") {
-      opcoes = ["", "Troca de poste"];
+      opcoes = ["", "Rompimento"];
     } else if (codigo1 === "Degradação/Infiltração") {
       opcoes = ["", "CEO", "CTO", "DGOI"];
     } else if (codigo1 === "Defeito Splitter") {
@@ -186,6 +190,13 @@
       opcoes = ["", "Atenuação", "Desorganização do", "Fibra Invertida", "Fibra Quebrada"];
     } else if (codigo1 === "Obras de Terceiros") {
       opcoes = ["", "Outras Obras", "Poda de árvores", "troca de postes não programada"];
+    } else if (codigo1 === "INTERPÉRIE") {
+      opcoes = ["", "Desgate por Tempo"];
+    } else if (codigo1 === "Ataques de Animais") {
+      opcoes = ["", "Abelhas","Formiga","Roedores","Outros"];
+    } else if (codigo1 === "Sem defeito para rede") {
+      opcoes = ["", "Encontrado Ok","Drop Rompido","Falta de Energia","Falha na central"];
+
     } else {
       opcoes = ["-- Selecione Causa Raiz primeiro --"];
     }
@@ -230,9 +241,6 @@
 
     const texto = `🚨 TESTAR E ENCERRAR 🚨
 
-PROTOCOLO: ${protocolo}
-DATA E HORA: ${dataHora}
-
 OCORRÊNCIA: ${getVal("ocorrencia")}
 ARD: ${getVal("ard")}
 SP: ${getVal("sp")}
@@ -241,6 +249,7 @@ CAUSA SECUNDÁRIA: ${getVal("codigo2")}
 TRATATIVA: ${getVal("tratativa")}
 MATERIAIS UTILIZADOS: ${getVal("materiais")}
 ENDEREÇO: ${getVal("endereco")}
+NÚMERO DA FACHADA: ${getVal("NUMERO DA FACHADA")}
 BAIRRO: ${getVal("bairro")}
 CIDADE: ${getVal("cidade")}
 TÉCNICOS: ${getVal("tecnicos")}
