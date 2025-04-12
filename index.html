@@ -224,7 +224,7 @@
   <button onclick="copiarTexto()" class="submit-btn">Copiar para WhatsApp</button>
   <div class="final-space"></div>
 
-  <div class="footer">Versão 1.0 - Desenvolvido para uso profissional </div>
+  <div class="footer">Versão 1.0 - Desenvolvido para uso interno </div>
 </div>
 
 <script>
@@ -321,6 +321,10 @@
   
       navigator.clipboard.writeText(texto).then(() => {
         alert("Texto copiado! Agora cole no WhatsApp.");
+
+        const whatsappURL = `whatsapp://send?text=${encodeURIComponent(texto)}`;
+        window.location.href = whatsappURL;
+
       });
     }
   </script>
