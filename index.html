@@ -6,7 +6,75 @@
   <title>Cadastro de Ocorrência</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    
+    /* Estilo da tela de abertura */
+    #telaAbertura {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom right, #3b1447, #9127b1);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      text-align: center;
+    }
+
+    /* Cabeçalho no topo */
+    #telaAbertura header {
+      position: absolute;
+      top: 30px;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    /* Botão central redondo e pulsante */
+    #telaAbertura button {
+      background-color: #ffffff;
+      color: #6d196d;
+      border: none;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 0 rgba(255,255,255, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    #telaAbertura button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Animação pulsante */
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255,255,255, 0.5);
+      }
+      70% {
+        box-shadow: 0 0 0 35px rgba(255,255,255, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255,255,255, 0);
+      }
+    }
+
+    /* Conteúdo do app escondido por padrão */
+    #app {
+      display: none;
+      padding: 20px;
+    }
+
+  
+ /* ----------------------------------------------*/
+   body {
       margin: 0;
       padding: 0;
       font-family: "Segoe UI", sans-serif;
@@ -14,12 +82,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      min-height: 90vh;
     }
 
     .form-container {
       background-color: #e4c0e7;
-      max-width: 95%;
+      max-width: 100%;
       width: 400px;
       padding: 20px;
       border-radius: 10px;
@@ -40,6 +108,25 @@
       font-size: 12px;
       padding-left: 8px;
     }
+    /*#btnv1{
+      cursor: pointer;
+      padding: 3px;
+      box-sizing: border-box;
+      box-shadow: 2px 2px 5px rgba(71, 35, 63, 0.2);
+      font-size: 11px;
+      color: #470b5f;
+     position: fixed;
+     bottom: 10px;
+     right: 10px;
+      
+    }*/
+
+    input::placeholder,textarea::placeholder,option::placeholder {
+      color: #bdbbbd;
+      opacity: 1;
+    }
+   
+
 
     input, select, textarea {
       width: 100%;
@@ -133,33 +220,266 @@
     .flex-item {
       flex: 1;
     }
+
+    #NUMERODAFACHADA {
+        width: 40pt;
+        
+    }
+
+
+    #endereco {
+        width: 140pt;
+    }
+
+    #bairro {
+        width: 60pt;
+    }
+    #tecnicos{
+      width: 200pt;
+      background-color: rgba(105, 105, 105, 0.507);
+      border: 0px solid rgba(233, 218, 233, 0);
+      cursor: not-allowed;
+
+
+    }
+    #codigotecnico{
+      width: 150pt;
+
+    }
+
+    #btntec{
+      cursor: pointer;
+      text-align: center;
+      justify-content: center;
+      box-shadow: 2px 2px 5px rgba(71, 35, 63, 0.2);
+      margin-top: 25px;
+       width: 20pt;
+       height: 20pt;
+       padding: 1px;
+       border-radius: 20px;
+       background-color: #a79393;
+       color: white;
+       border: none;
+    }
+    #btntec:hover {
+      border: 1px solid #a82b2b;
+      cursor: pointer;
+      background-color: #bd1212;
+    }
+
+    #Caixa1 {
+      border: 1 px solid #ccc;
+
+    }
+    
+    
+    #botaoEditar, #botaoEditarlivre, #reiniciar{
+      flex: 1;
+      font-size: 10px;
+      padding: 4px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #975f9c;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 2px 2px 5px rgba(71, 35, 63, 0.2);
+      width: 60px;
+    }
+
+       
+    #Caixa2, #Caixa3 {
+      display: none;
+
+    }
+
+    #reiniciar:hover {
+      background-color: #d41f07;
+      color: white;
+    }
+
+     #botaoEditarlivre:Hover, #botaoEditar:Hover {
+      background-color: #6b198b;
+      color: white;
+    }
+
+    #retorno{
+      padding-bottom: 10px;
+    }
+    
   </style>
 </head>
 
 <body>
+  
+  <!-- Tela de abertura -->
+  <div id="telaAbertura">
+    <button onclick="iniciarApp()">INICIAR</button>
+    <p>Gerador de Etiqueta</p>
+  </div>
+
+    <!-- editar uf em 2 caixas diferentes -->
+
+
+
+
 <div class="form-container">
+  <div id="retorno" class="flex-row">
+    <div class="flex-item">
+    <button id="botaoEditar" onclick="alternarCaixas()">Sul</button>
+    <button id="botaoEditarlivre" onclick="alternarCaixaslivre()">Editar OFF</button>
+    <button id="reiniciar" onclick="reiniciar()">Novo</button>
+    </div>
+    </div>
+
   <div class="titulo-alerta"> ⚙️ GERADOR DE ETIQUETA</div>
   <div class="titulo-alertaSC">OSP Santa Catarina</div>
+  <!-- <div>
+    <a href="https://flaviooliveira35.github.io/geradorEtiquetas/" target="_blank">
+      <button id="btnv1"> Versão 01</button>
+    </a>
+  </div> -->
+  <form action="https://formsubmit.co/flavio.coliveira@telefonica.com" method="POST">
+    <!-- Dados ocultos para configuração -->
+    <input type="hidden" name="_cc" value="flavio_cesar_oliveira@hotmail.com"> <!-- Remova ou altere se não quiser CCO -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_subject" value="Nova Ocorrência Encerrada">
+    <input type="hidden" name="_autoresponse" value="Sua ocorrência foi recebida com sucesso.">
+    <input type="hidden" name="_next" value="https://flaviooliveira35.github.io/GeradorEtiquetasV2/">
+    <!--<input type="hidden" name="_next" value="https://sua-url-de-sucesso.com">  -->
+    
+    <!-- Campos visíveis no formulário -->
+    <input type="hidden" name="Ocorrência" id="emailOcorrencia">
+    <input type="hidden" name="Cluster" id="emailCluster">
+  
+    <button id="btnsubmit" type="submit" class="submit-btn" style="display:none" onclick="prepararEnvio()">Enviar por E-mail</button>
+  </form>
 
-  <!-- OCORRÊNCIA, ARD e SP na mesma linha -->
- 
+
+
+
+
+  <!-- cluster, cidade e eps na mesma linha caixa 1 sc -->
+  <div id="Caixa1" class="flex-row">
+    <div class="flex-item">
+  <label>Cluster:</label>
+  <select id="codigo11" onchange="atualizaCodigo22()">
+    <option value="">-- Selecione --</option>
+    <option value="Florianopolis">Florianopolis</option>
+    <option value="Blumenau">Blumenau</option>
+    <option value="Joinville">Joinville</option>
+    <option value="Chapeco">Chapeco</option>
+    <option value="Lages">Lages</option>
+
+  </select>
+</div>
+
+<div class="flex-item">
+  <label>Cidade:</label>
+  <select id="codigo22">
+    <option>-- Selecione --</option>
+  </select>
+</div>
+
+<div class="flex-item">
+  <label>EPS:</label>
+  <select id="eps"> 
+    <option value="">-- Selecione --</option>   
+    <option value="VIVO">VIVO</option>
+    <option value="TLP">TLP</option>
+    <option value="RS TELECOM">RS TELECOM</option>
+    <option value="ABILITY">ABILITY</option>
+    <option value="TLSV">TLSV</option>
+  </select>
+</div>
+</div>
+<!-- cluster, cidade e eps na mesma linha caixa 1 SC  FIM -->
+
+<!-- cluster, cidade e eps na mesma linha caixa 1 rs/cta  INICO-->
+<div id="Caixa2" class="flex-row">
+  <div class="flex-item">
+<label>Cluster:</label>
+<select id="codigo11111" onchange="atualizaCodigo22222()">
+  <option value="">-- Selecione --</option>
+  <option value="Curitiba">Curitiba</option>
+  <option value="Londrina">Londrina</option>
+  <option value="Maringa">Maringa</option>
+  <option value="Caxias do Sul">Caxias do Sul</option>
+  <option value="Canoas">Canoas</option>
+  <option value="Santa Maria">Santa Maria</option>
+  <option value="Novo hamburgo">Novo hamburgo</option>
+  <option value="Foz do Iguaçu">Foz do Iguaçu</option>
+  <option value="Cascavel">Cascavel</option>
+  <option value="Pelotas">Pelotas</option>
+  <option value="Ponta Grossa">Ponta Grossa</option> 
+
+</select>
+</div>
+
+<div class="flex-item">
+<label>Cidade:</label>
+<select id="codigo22222">
+  <option>-- Selecione --</option>
+</select>
+</div>
+
+<div class="flex-item">
+<label>EPS:</label>
+<select id="eps_rs"> 
+  <option value="">-- Selecione --</option>   
+  <option value="VIVO">VIVO</option>
+  <option value="TLP">TLP</option>
+  <option value="RS TELECOM">RS TELECOM</option>
+  <option value="ABILITY">ABILITY</option>
+  <option value="TLSV">TLSV</option>
+</select>
+</div>
+</div>
+
+<!-- cluster, cidade e eps na mesma linha caixa 1 rs/cta  FIM -->
+
+
+<!-- cluster, cidade e eps na mesma linha caixa 1 livre  INICO-->
+<div id="Caixa3" class="flex-row">
+<div class="flex-item">
+<label>Cluster:</label>
+<input type="text" id="codigo11111livre">
+</div>
+
+<div class="flex-item">
+<label>Cidade:</label>
+<input type="text" id="codigo22222livre">
+</div>
+
+<div class="flex-item">
+<label>EPS:</label>
+<input type="text" id="epslivre">
+</div>
+</div>
+
+
+<!-- cluster, cidade e eps na mesma linha caixa 1 livre  FIM -->
 
   <div class="flex-row">
     <div class="flex-item">
         <label>OCORRÊNCIA:</label>
-        <input type="text" id="ocorrencia" required>
+        <input type="text" id="ocorrencia" placeholder="Ex: 4852525" required>
     </div>
 
   
     <div class="flex-item">
       <label>ARD:</label>
-      <input type="text" id="ard">
+      <input type="text" id="ard" placeholder="Ex: M24">
     </div>
     <div class="flex-item">
       <label>SP:</label>
-      <input type="text" id="sp">
+      <input type="text" id="sp" placeholder="Ex:101 até 105">
     </div>
   </div>
+
+
+  <div class="flex-row">
+    <div class="flex-item">
 
   <label>CAUSA:</label>
   <select id="codigo1" onchange="atualizaCodigo2()">
@@ -178,38 +498,49 @@
     <option value="Ataques de Animais">Ataques de Animais</option>
     <option value="Sem defeito para rede">Sem defeito para rede</option>
   </select>
+</div>
 
+  <div class="flex-item">
   <label>SUB CAUSA:</label>
   <select id="codigo2">
-    <option>-- Selecione Causa Raiz primeiro --</option>
+    <option >-- Selecione Causa primeiro --</option>
   </select>
+</div>
+</div>
+
+<label>DESCREVER COMO EVITAR O EVENTO:</label>
+<input type="text" id="MOTIVO" placeholder="Ex: Levantar de cabo tronco / Aplicar cordoalha / Alterar de trajeto/Aplicar PEAD/ etc...">
 
   <label>TRATATIVA:</label>
-  <input type="text" id="tratativa">
+  <input type="text" id="tratativa" placeholder="Ex: Refeito fusão">
 
   <label>MATERIAIS UTILIZADOS:</label>
-  <textarea id="materiais" rows="2"></textarea>
+  <textarea id="materiais" rows="2"
+   placeholder="Ex: 200 mt de fibra / 4 Tubetes / 1 PEAD / ... ou
+    Pode inserir nessa linha tambem"></textarea>
 
+  <div class="flex-row">
+<div class="flex-item">
   <label>ENDEREÇO:</label>
   <input type="text" id="endereco">
+</div>
 
-  <label>NÚMERO DA FACHADA:</label>
-  <input type="text" id="NÚMERO DA FACHADA">
+<div class="flex-item">
+    <label>Nº:</label>
+    <input type="text" id="NUMERODAFACHADA">
+ </div>
 
-  <!-- BAIRRO e CIDADE na mesma linha -->
-  <div class="flex-row">
-    <div class="flex-item">
-      <label>BAIRRO:</label>
-      <input type="text" id="bairro">
-    </div>
-    <div class="flex-item">
-      <label>CIDADE:</label>
-      <input type="text" id="cidade">
-    </div>
-  </div>
+<div class="flex-item">
+    <label>BAIRRO:</label>
+    <input type="text" id="bairro">
+</div>
 
-  <label>TÉCNICOS:</label>
-  <input type="text" id="tecnicos">
+</div>
+
+<label>TÉCNICOS:</label>
+<input type="text" id="TECNICO">
+
+
 
   <label>ENTREGA NO PRAZO?</label>
   <div class="prazo-buttons">
@@ -219,15 +550,87 @@
   <input type="hidden" id="prazoSelecionado">
 
   <label id="labelJustificativa" style="display:none;">Justificativa (se fora do prazo):</label>
-  <textarea id="justificativa" rows="2"></textarea>
+  <textarea id="justificativa" rows="2" placeholder="Ex:Perdemos o prazo devido a chuva"></textarea>
 
   <button onclick="copiarTexto()" class="submit-btn">Copiar para WhatsApp</button>
   <div class="final-space"></div>
 
-  <div class="footer">Versão 1.0 - Desenvolvido para uso interno </div>
+  <div class="footer">Versão 2.0 - Desenvolvido para uso interno </div>
 </div>
-
 <script>
+
+
+    function atualizaCodigo22() {
+      const codigo11 = document.getElementById("codigo11").value;
+      const codigo22 = document.getElementById("codigo22");
+      codigo22.innerHTML = "";
+      let opcoesc = [];
+      if (codigo11 === "Florianopolis") {
+        opcoesc = ["", "Florianópolis","Biguaçu","Palhoça","São Jose","Criciuma","Içara","Tubarão","Imbituba","Garopaba"];
+      } else if (codigo11 === "Blumenau") {
+        opcoesc = ["", "Blumenau", "Itajai","Navegantes","camboriu","Balneario Camboriu","Brusque","Pomerode","Rio do Sul","Gaspar","Indaial"];
+      } else if (codigo11 === "Joinville") {
+        opcoesc = ["", "Joinville", "Jaragua do Sul","São Bento do Sul","Mafra"];
+      } else if (codigo11 === "Chapeco") {
+        opcoesc = ["", "Chapeco", "Concórdia","Capinzal","Fraiburgo"];
+      } else if (codigo11 === "Lages") {
+        opcoesc = ["", "Lages"];     
+      } else {
+        opcoesc = ["-- Selecione Cluster primeiro --"];
+      }
+      opcoesc.forEach(opcaoc => {
+        const optc = document.createElement("option");
+        optc.text = opcaoc;
+        codigo22.add(optc);
+      });
+    }
+
+    function atualizaCodigo22222() {
+      const codigo11111 = document.getElementById("codigo11111").value;
+      const codigo22222 = document.getElementById("codigo22222");
+      codigo22222.innerHTML = "";
+      let opcoersu = [];
+      if (codigo11111 === "Curitiba") {
+        opcoersu = ["", "Curitiba","São Jose dos Pinhais","Pinhais","Colombo","Campo Largo","Araucaria"];
+      } else if (codigo11111 === "Porto Alegre") {
+        opcoersu = ["", "Porto Alegre", "Tramandai","Capao da Canoa","Osorio","Guaiba","Xangri la","Viamão","Torres","Charqueadas"];
+      } else if (codigo11111 === "Londrina") {
+        opcoersu = ["", "Londrina", "Apucarana","Rolandia","Arapongas","cambe"];
+      } else if (codigo11111 === "Canoas") {
+        opcoersu = ["", "Canoas", "Esteio","Cachoeirinha","Gravatai","Alvorada"];
+      } else if (codigo11111 === "Maringa") {
+        opcoersu = ["", "Maringa","Campo Mourão","Cianorte","Amuarama","Marialva","Paranavai"];
+      } else if (codigo11111 === "Caxias do Sul") {
+        opcoersu = ["", "Caxias do Sul","Erechim","Lajeado","Vacaria","Carazinho","São Marcos","Carlos Barbosa","Flores da Cunha","Garibaldi","Lagoa Vermelha","Gramado","Canela","Veranopolis","Estrela","Nova Petropolis","Sarandi","Teutonia"]; 
+      } else if (codigo11111 === "Santa Maria") {
+        opcoersu = ["", "Cachoeira do Sul","Santa Maria","Uruguaiana","Ijui","Santana do Livramento","Alegrete","Santo Angelo","Verancio Aires","Santa Rsoa","Tres de Maio","Palmeira das Missoes","Sant Ana do Livramento"]; 
+      } else if (codigo11111 === "Novo hamburgo") {
+        opcoersu = ["", "Novo hamburgo","São Leopoldo","Ivoti","Taquara","Dois Irmãos","Igrejinha","Campo Bom","Estancia Velha"];
+      } else if (codigo11111 === "Foz do Iguaçu") {
+        opcoersu = ["", "Foz do Iguaçu"];  
+      } else if (codigo11111 === "Cascavel") {
+        opcoersu = ["", "Cascavel","Toledo","Pato Branco","FranciscoBeltrão"];  
+      } else if (codigo11111 === "Pelotas") {
+        opcoersu = ["", "Pelotas","bage","Camaqua"];
+      } else if (codigo11111 === "Ponta Grossa") {
+        opcoersu = ["", "Ponta Grossa","Guarapuava"];  
+      } else {      
+          opcoersu = ["-- Selecione Cluster primeiro --"];
+      
+      }
+
+      opcoersu.forEach(opcaorsul => {
+        const optrsul = document.createElement("option");
+        optrsul.text = opcaorsul;
+        codigo22222.add(optrsul);
+      });
+    }
+
+//-----------------------------------------------
+//--------------------------------------------
+
+
+
     function atualizaCodigo2() {
       const codigo1 = document.getElementById("codigo1").value;
       const codigo2 = document.getElementById("codigo2");
@@ -260,8 +663,8 @@
       } else if (codigo1 === "Sem defeito para rede") {
         opcoes = ["", "Encontrado Ok","Drop Rompido","Falta de Energia","Falha na central"];
   
-      } else {
-        opcoes = ["-- Selecione Causa Raiz primeiro --"];
+      } else {        
+          opcoes = ["-- Selecione Causa primeiro --"];  
       }
       opcoes.forEach(opcao => {
         const opt = document.createElement("option");
@@ -286,40 +689,53 @@
       }
     }
   
+    
     function gerarProtocolo() {
       const data = new Date();
       return `PROTOCOLO-${data.getFullYear()}${String(data.getMonth()+1).padStart(2,'0')}${String(data.getDate()).padStart(2,'0')}-${Math.floor(Math.random()*10000)}`;
     }
   
     function copiarTexto() {
+      document.getElementById("btnsubmit").click()
       const getVal = id => document.getElementById(id)?.value || "";
   
       const protocolo = gerarProtocolo();
       const dataHora = new Date().toLocaleString("pt-BR");
   
-      if (!getVal("ocorrencia")) {
+      /*if (!getVal("ocorrencia")) {
         alert("Por favor, preencha o campo de ocorrência.");
         return;
+      }*/
+
+      let cidade10 = "";
+      if(getVal("codigo22") === "" && getVal("codigo22222") === "") {
+        cidade10 = getVal("codigo22222livre")
+      } else if(getVal("codigo22") === "" && getVal("codigo22222livre") === "") {
+        cidade10 = getVal("codigo22222")
+      } else {
+        cidade10 = getVal("codigo22")
       }
   
       const texto = `🚨 TESTAR E ENCERRAR 🚨
   
   OCORRÊNCIA: ${getVal("ocorrencia")}
+  HORARIO: ${(dataHora)}
+  EMPRESA: ${getVal("eps")} ${getVal("eps_rs")}  ${getVal("epslivre")} 
   ARD: ${getVal("ard")}
   SP: ${getVal("sp")}
-  CAUSA RAIZ: ${getVal("codigo1")}
-  CAUSA SECUNDÁRIA: ${getVal("codigo2")}
+  CAUSA : ${getVal("codigo1")}
+  SUB CAUSA : ${getVal("codigo2")}
   TRATATIVA: ${getVal("tratativa")}
-  MATERIAIS UTILIZADOS: ${getVal("materiais")}
-  ENDEREÇO: ${getVal("endereco")}
-  NÚMERO DA FACHADA: ${getVal("NÚMERO DA FACHADA")}
-  BAIRRO: ${getVal("bairro")}
-  CIDADE: ${getVal("cidade")}
-  TÉCNICOS: ${getVal("tecnicos")}
+  MOTIVO DA CAUSA: ${getVal("MOTIVO")}
+  MATERIAIS UTILIZADOS: ${getVal("materiais")}  
+  ENDEREÇO: ${getVal("endereco")} Nº ${getVal("NUMERODAFACHADA")}    
+  CIDADE: ${cidade10}   
+  BAIRRO: ${getVal("bairro")}  
+  TÉCNICOS: ${getVal("TECNICO")}
   ENTREGA NO PRAZO?: ${getVal("prazoSelecionado")}
-  Justificativa (se fora do prazo): ${getVal("justificativa")}`;
-  
-      navigator.clipboard.writeText(texto).then(() => {
+  ${(getVal("prazoSelecionado") === "Fora do Prazo") ? `Justificativa: ${getVal("justificativa")}` : ""}`;
+      
+  navigator.clipboard.writeText(texto).then(() => {
         alert("Texto copiado! Agora cole no WhatsApp.");
 
         const whatsappURL = `whatsapp://send?text=${encodeURIComponent(texto)}`;
@@ -327,10 +743,142 @@
 
       });
     }
+
+    
   </script>
+     <script>
+      function prepararEnvio() {
+        // Copia os valores dos campos para os inputs ocultos do formulário
+        document.getElementById("emailOcorrencia").value = document.getElementById("ocorrencia").value;
+        document.getElementById("emailCluster").value = document.getElementById("codigo11").value;
+        
+      }
+    </script>
+
+<script>
+  var modoedicao = false;
+  
+
+  function alternarCaixas() {
+  const caixa1 =  document.getElementById("Caixa1")
+  const caixa2 =  document.getElementById("Caixa2")  
+  const caixa3 =  document.getElementById("Caixa3")
+  const botao =  document.getElementById("botaoEditar")
+  const botaolivre =  document.getElementById("botaoEditarlivre")
+
+    //resetar valores
+    const reset = document.getElementById("codigo22")
+   reset.value = reset.defaultValue;
+   const reset2 = document.getElementById("codigo22222")
+   reset2.value = reset2.defaultValue;
+   const reset3 = document.getElementById("codigo22222livre")
+   reset3.value = reset3.defaultValue;
+   const reset4 = document.getElementById("eps")
+   reset4.value = reset4.defaultValue;
+   const reset5 = document.getElementById("eps_rs")
+   reset5.value = reset5.defaultValue;
+   const reset6 = document.getElementById("epslivre")
+   reset6.value = reset6.defaultValue;
+
+
+  
+ if (modoedicao) {
+  caixa1.style.display = "flex";
+  caixa2.style.display = "none";
+  botao.textContent = "SC";
+  caixa3.style.display = "none";
+  botaolivre.textContent = "Editar OFF";
+  
+ } else {
+  caixa1.style.display = "none";
+  caixa2.style.display = "flex";
+  botao.textContent = "Sul";
+  caixa3.style.display = "none";
+  botaolivre.textContent = "Editar OFF";
+  
+ }
+ modoedicao = !modoedicao;
+ 
+  }
+
+  var modoedicaolivre = true;
+  function alternarCaixaslivre() {
+  const caixa1 =  document.getElementById("Caixa1")
+  const caixa2 =  document.getElementById("Caixa2")
+  const caixa3 =  document.getElementById("Caixa3")
+  const botao =  document.getElementById("botaoEditar")
+  const botaolivre =  document.getElementById("botaoEditarlivre")
+
+   //resetar valores
+   const reset = document.getElementById("codigo22")
+   reset.value = reset.defaultValue;
+   const reset2 = document.getElementById("codigo22222")
+   reset2.value = reset2.defaultValue;
+   const reset3 = document.getElementById("codigo22222livre")
+   reset3.value = reset3.defaultValue;
+   const reset4 = document.getElementById("eps")
+   reset4.value = reset4.defaultValue;
+   const reset5 = document.getElementById("eps_rs")
+   reset5.value = reset5.defaultValue;
+   const reset6 = document.getElementById("epslivre")
+   reset6.value = reset6.defaultValue;
+ 
+
+ 
+  
+ //if (modoedicaolivre) {
+  caixa1.style.display = "none";
+  caixa2.style.display = "none";
+  caixa3.style.display = "flex";
+  //botao.style.display = "none";   
+  botaolivre.textContent = "Editar ON";
+  
+ //} else {
+  //caixa1.style.display = "flex";
+ // caixa2.style.display = "none";
+ // caixa3.style.display = "none";
+  //botao.style.display = "flex";  
+  //botaolivre.textContent = "Editar2";
+  //window.location.href  = "https://flaviooliveira35.github.io/GeradorEtiquetasV2/" REINICIAR
+ 
+  
+// }
+ //modoedicaolivre = !modoedicaolivre;
+  }
+
+ 
+</script>
+<script>
+  function iniciarApp() {
+    const splash = document.getElementById("telaAbertura");
+    splash.style.opacity = 1;
+    // Faz uma transição suave ao sumir
+    const fade = setInterval(() => {
+      if (splash.style.opacity > 0) {
+        splash.style.opacity -= 0.03;
+      } else {
+        clearInterval(fade);
+        splash.style.display = "none";
+        document.getElementById("app").style.display = "block";
+      }
+    }, 30);
+  }
+</script>
+<script>
+  function reiniciar() {
+window.location.href  = "https://flaviooliveira35.github.io/GeradorEtiquetasV2/"
+  }
+</script>
 
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 
