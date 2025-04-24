@@ -350,7 +350,21 @@
     
     <!-- Campos visíveis no formulário -->
     <input type="hidden" name="Ocorrência" id="emailOcorrencia">
+    <input type="hidden" name="Data" id="emaildata">
     <input type="hidden" name="Cluster" id="emailCluster">
+    <input type="hidden" name="Cidade" id="emailCidade">
+    <input type="hidden" name="EPS" id="emaileps">
+    <input type="hidden" name="Armário" id="emailard">
+    <input type="hidden" name="SP" id="emailsp">
+    <input type="hidden" name="Causa" id="emailCausa">
+    <input type="hidden" name="Motivo" id="emailMotivo">
+    <input type="hidden" name="Materias" id="emailmateriais">
+    <input type="hidden" name="Endereço" id="emailendereco">    
+    <input type="hidden" name="Baixo" id="emailbairro">
+    <input type="hidden" name="Prazo" id="emailbaiprazoSelecionadorro">
+    <input type="hidden" name="Justificatia" id="emailjustificativa">
+    <input type="hidden" name="Equipe" id="emailequipe">
+   
   
     <button id="btnsubmit" type="submit" class="submit-btn" style="display:none" onclick="prepararEnvio()">Enviar por E-mail</button>
   </form>
@@ -750,8 +764,20 @@
       function prepararEnvio() {
         // Copia os valores dos campos para os inputs ocultos do formulário
         document.getElementById("emailOcorrencia").value = document.getElementById("ocorrencia").value;
+        document.getElementById("emaildata").value = dataHora.Date;
         document.getElementById("emailCluster").value = document.getElementById("codigo11").value;
-        
+        document.getElementById("emailard").value = document.getElementById("ard").value;
+        document.getElementById("emailsp").value = document.getElementById("sp").value;
+        document.getElementById("emailCausa").value = document.getElementById("codigo1").value;
+        document.getElementById("emailMotivo").value = document.getElementById("MOTIVO").value;
+        document.getElementById("emailmateriais").value = document.getElementById("materiais").value;
+        document.getElementById("emailendereco").value = document.getElementById("endereco").value &"-"& document.getElementById("NUMERODAFACHADA").value;
+        document.getElementById("emailCidade").value = cidade10;
+        document.getElementById("emailbairro").value = document.getElementById("bairro").value;
+        document.getElementById("emailbaiprazoSelecionadorro").value = document.getElementById("baiprazoSelecionadorro").value;
+        document.getElementById("emailjustificativa").value = document.getElementById("justificativa").value;
+        document.getElementById("emaileps").value = document.getElementById("eps").value&document.getElementById("eps_rs").value&document.getElementById("epslivre").value;
+        document.getElementById("emailequipe").value = document.getElementById("TECNICO").value
       }
     </script>
 
