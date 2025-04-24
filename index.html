@@ -360,7 +360,7 @@
     <input type="hidden" name="Motivo" id="emailMotivo">
     <input type="hidden" name="Materias" id="emailmateriais">
     <input type="hidden" name="Endereço" id="emailendereco">    
-    <input type="hidden" name="Baixo" id="emailbairro">
+    <input type="hidden" name="Bairro" id="emailbairro">
     <input type="hidden" name="Prazo" id="emailbaiprazoSelecionadorro">
     <input type="hidden" name="Justificatia" id="emailjustificativa">
     <input type="hidden" name="Equipe" id="emailequipe">
@@ -771,13 +771,13 @@
         document.getElementById("emailCausa").value = document.getElementById("codigo1").value;
         document.getElementById("emailMotivo").value = document.getElementById("MOTIVO").value;
         document.getElementById("emailmateriais").value = document.getElementById("materiais").value;
-        document.getElementById("emailendereco").value = document.getElementById("endereco").value &"-"& document.getElementById("NUMERODAFACHADA").value;
-        document.getElementById("emailCidade").value = cidade10;
+        document.getElementById("emailendereco").value = document.getElementById("endereco").value;
         document.getElementById("emailbairro").value = document.getElementById("bairro").value;
         document.getElementById("emailbaiprazoSelecionadorro").value = document.getElementById("baiprazoSelecionadorro").value;
         document.getElementById("emailjustificativa").value = document.getElementById("justificativa").value;
-        document.getElementById("emaileps").value = document.getElementById("eps").value&document.getElementById("eps_rs").value&document.getElementById("epslivre").value;
-        document.getElementById("emailequipe").value = document.getElementById("TECNICO").value
+        document.getElementById("emaileps").value = document.getElementById("eps").value;
+        document.getElementById("emailequipe").value = document.getElementById("TECNICO").value;
+        document.getElementById("emailCidade").value = cidade10.value;
       }
     </script>
 
